@@ -1,0 +1,15 @@
+There is one map-reduce job 'AnlyticsJob' in this implementation, it will scan the Visitor table and output the basic metric values to a SQL DB.
+
+MetricDAO provides 3 kinds of interface to the application:
+1. String getAnalyticsForCampaign(String merchantKey, String campaignKey, String rangeTag);
+  analytics result of a specific campaign.
+2. String getTotalAnalyticsForGroup(String merchantKey, int groupType, String rangeTag);
+  total analytics result of the group (either treatment or control)
+3.String getTotalAnalyticsForMerchant(String merchantKey, String rangeTag);
+  total analytics of the merchant.
+
+This package also includes some applications to upload the analytics result to google docs. Refer to 'PushAnalyticsYesterday', 'PushAnalyticsLast7', 'PushAnalyticsLast30', 'PushAnalyticsThismonth'.
+
+To generate the assembly package, type 'mvn assembly:assembly", it will compile the package, run the unit tests, generate the analytics jar and generate the assembly package under target/ folder.
+
+To run the analytics, copy the assembly package analytics-assembly.tar.gz to any machine that you wish to run the analytics on, unpack it, and then run 'runAnalytics.sh' which is under analytics/script/.
